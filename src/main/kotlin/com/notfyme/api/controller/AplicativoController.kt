@@ -2,6 +2,7 @@ package com.notfyme.api.controller
 
 import com.notfyme.api.controller.dto.AplicativoRequest
 import com.notfyme.api.controller.dto.AplicativoResponse
+import com.notfyme.api.controller.dto.PageRequest
 import com.notfyme.api.service.AplicativoService
 import org.springframework.data.domain.Page
 import org.springframework.http.ResponseEntity
@@ -33,9 +34,9 @@ class AplicativoController(
     }
 
 
-    @GetMapping("/empresa/{empresaId}/page/{page}")
-    fun obterPage(@PathVariable empresaId: Long, @PathVariable page: Int): ResponseEntity<Page<AplicativoResponse>> {
-        val pageResponse = aplicativoService.obterPage(empresaId, page)
+    @GetMapping("/empresa/{empresaId}")
+    fun obterPage(@PathVariable empresaId: Long, @RequestBody pageRequest: PageRequest): ResponseEntity<Page<AplicativoResponse>> {
+        val pageResponse = aplicativoService.obterPage(empresaId, pageRequest)
         return ResponseEntity.ok(pageResponse)
     }
 }

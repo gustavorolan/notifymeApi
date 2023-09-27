@@ -1,6 +1,7 @@
 package com.notfyme.api.service.impl
 
 import com.notfyme.api.controller.dto.AplicativoRequest
+import com.notfyme.api.controller.dto.PageRequest
 import com.notfyme.api.exception.EmpresaNaoEncontradaException
 import com.notfyme.api.exception.EmpresaOuAplicativoNaoEncontradoException
 import com.notfyme.api.mapper.toEntity
@@ -8,7 +9,6 @@ import com.notfyme.api.mapper.toResponse
 import com.notfyme.api.repository.AplicativoRepository
 import com.notfyme.api.repository.EmpresaRepository
 import com.notfyme.api.service.AplicativoService
-import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Sort
 import org.springframework.stereotype.Service
 
@@ -47,9 +47,7 @@ class AplicativoServiceImpl(
             .orElseThrow { EmpresaOuAplicativoNaoEncontradoException() }
             .toResponse()
 
-    override fun obterPage(empresaId: Long, page: Int) =
-        aplicativoRepository.findByEmpresaEntityId(empresaId, obterPageRequest(page))
+    override fun obterPage(empresaId: Long, pageRequest: PageRequest) =
+        aplicativoRepository.findByEmpresaEntityId(empresaId, pageRequest.obter())
             .map { it.toResponse() }
-
-    private fun obterPageRequest(page: Int) = PageRequest.of(page, NUMERO_DE_ELEMENTOS_POR_PAGINA, SORT)
 }
