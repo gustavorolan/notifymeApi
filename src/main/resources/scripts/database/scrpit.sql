@@ -1,36 +1,190 @@
-create database notifyme;
+CREATE DATABASE notifyme;
 
-create table aplicativo (empresa_id bigint, id bigserial not null, api_key varchar(255), nome varchar(255), primary key (id));
+CREATE TABLE if NOT EXISTS aplicativo (
+    empresa_id
+    BIGINT,
+    id
+    bigserial
+    NOT
+    NULL,
+    api_key
+    VARCHAR (
+    255
+), nome VARCHAR (
+    255
+), PRIMARY KEY (
+    id
+))
 
-create table empresa (id bigserial not null, cnpj varchar(11), nome varchar(255), primary key (id));
+CREATE TABLE if NOT EXISTS bot_grupo_interesse (
+    bot_plataforma_id
+    BIGINT,
+    grupo_interesse_id
+    BIGINT,
+    id
+    bigserial
+    NOT
+    NULL,
+    grupo_external_id
+    VARCHAR (
+    255
+), nome VARCHAR (
+    255
+), PRIMARY KEY (
+    id
+))
 
-alter table if exists aplicativo add constraint FKflvt4ast2lfmiaykroqx6j616 foreign key (empresa_id) references empresa;
+CREATE TABLE if NOT EXISTS bot_plataforma (
+    id
+    bigserial
+    NOT
+    NULL,
+    plataforma_id
+    VARCHAR (
+    255
+), token VARCHAR (
+    255
+), PRIMARY KEY (
+    id
+))
+
+CREATE TABLE if NOT EXISTS empresa (
+    id
+    bigserial
+    NOT
+    NULL,
+    cnpj
+    VARCHAR (
+    255
+), nome VARCHAR (
+    255
+), PRIMARY KEY (
+    id
+))
+
+CREATE TABLE if NOT EXISTS evento (
+    aplicativo_id
+    BIGINT,
+    data_abertura
+    TIMESTAMP (
+    6
+), data_fechamento TIMESTAMP (
+    6
+), id bigserial NOT NULL, tipo_evento_id BIGINT, mensagem VARCHAR (
+    255
+), titulo VARCHAR (
+    255
+), stack_trace oid, PRIMARY KEY (
+    id
+))
+
+CREATE TABLE if NOT EXISTS evento_plataforma (
+    enviado
+    boolean
+    NOT
+    NULL,
+    evento_id
+    BIGINT,
+    id
+    bigserial
+    NOT
+    NULL,
+    mensagem_id_externo
+    VARCHAR (
+    255
+), plataforma VARCHAR (
+    255
+), PRIMARY KEY (
+    id
+))
+
+CREATE TABLE if NOT EXISTS grupo_interesse (
+    aplicativo_id
+    BIGINT,
+    empresa_id
+    BIGINT,
+    id
+    bigserial
+    NOT
+    NULL,
+    nome
+    VARCHAR (
+    255
+), PRIMARY KEY (
+    id
+))
+
+CREATE TABLE if NOT EXISTS grupo_interesse_tipo_evento (
+    grupo_interesse_id
+    BIGINT,
+    id
+    bigserial
+    NOT
+    NULL,
+    tipo_evento_id
+    BIGINT,
+    PRIMARY
+    KEY (
+    id
+))
+
+CREATE TABLE if NOT EXISTS tipo_evento (
+    ativo
+    boolean
+    NOT
+    NULL,
+    empresa_id
+    BIGINT,
+    id
+    bigserial
+    NOT
+    NULL,
+    nome
+    VARCHAR (
+    255
+), PRIMARY KEY (
+    id
+))
+
+ALTER TABLE if EXISTS aplicativo
+ADD CONSTRAINT FKflvt4ast2lfmiaykroqx6j616 FOREIGN KEY (empresa_id) REFERENCES empresa
+
+ALTER TABLE if EXISTS bot_grupo_interesse
+ADD CONSTRAINT FK514hb06wmjwqudxi43gi347mb FOREIGN KEY (bot_plataforma_id) REFERENCES bot_plataforma
+
+ALTER TABLE if EXISTS bot_grupo_interesse
+ADD CONSTRAINT FKmvaeyx7edeed999h8i4bxcvsx FOREIGN KEY (grupo_interesse_id) REFERENCES grupo_interesse
+
+ALTER TABLE if EXISTS evento
+ADD CONSTRAINT FK2y4vndfjbvg6wjdawj7pxkfcy FOREIGN KEY (aplicativo_id) REFERENCES aplicativo
+
+ALTER TABLE if EXISTS evento
+ADD CONSTRAINT FK6w38aahpdken3763tw3m3sbou FOREIGN KEY (tipo_evento_id) REFERENCES tipo_evento
+
+ALTER TABLE if EXISTS evento_plataforma
+ADD CONSTRAINT FKirhaten1m28yx6qqf3wa9ds21 FOREIGN KEY (evento_id) REFERENCES evento
+
+ALTER TABLE if EXISTS grupo_interesse
+ADD CONSTRAINT FK7xag46sqtssddo1uevtsjepvr FOREIGN KEY (aplicativo_id) REFERENCES aplicativo
+
+ALTER TABLE if EXISTS grupo_interesse
+ADD CONSTRAINT FKlqqv0px8qhslonwvxlysnregn FOREIGN KEY (empresa_id) REFERENCES empresa
+
+ALTER TABLE if EXISTS grupo_interesse_tipo_evento
+ADD CONSTRAINT FKip9ukk6k5h2qtc5nd6woidhhu FOREIGN KEY (grupo_interesse_id) REFERENCES grupo_interesse
+
+ALTER TABLE if EXISTS grupo_interesse_tipo_evento
+ADD CONSTRAINT FKdbqvc20vk7ijqsi6257owwjuf FOREIGN KEY (tipo_evento_id) REFERENCES tipo_evento
+
+ALTER TABLE if EXISTS tipo_evento
+ADD CONSTRAINT FKdo10xf28wsj21ops2h7kbw8x3 FOREIGN KEY (empresa_id) REFERENCES empresa
 
 
-insert into empresa values (0, '12345678910', 'guzinhoBusiness');
+INSERT INTO empresa
+VALUES (0, '12345678910', 'guzinhoBusiness');
 
-insert into aplicativo values (0,0, '12345678910', 'guzinhoapp');
+INSERT INTO aplicativo
+VALUES (0, 0, '12345678910', 'guzinhoapp');
 
-insert into aplicativo values (0,1, '12345678910', 'guzinhoapp2');
-
-
-create table aplicativo (empresa_id bigint, id bigserial not null, api_key varchar(255), nome varchar(255), primary key (id))
-    2023-09-27T09:52:32.829-03:00 DEBUG 2256 --- [           main] org.hibernate.SQL                        : create table bot_grupo_interesse (bot_plataforma_id bigint, grupo_interesse_id bigint, id bigserial not null, grupo_external_id varchar(255), nome varchar(255), primary key (id))
-2023-09-27T09:52:32.836-03:00 DEBUG 2256 --- [           main] org.hibernate.SQL                        : create table bot_plataforma (id bigserial not null, plataforma_id varchar(255), token varchar(255), primary key (id))
-2023-09-27T09:52:32.842-03:00 DEBUG 2256 --- [           main] org.hibernate.SQL                        : create table empresa (id bigserial not null, cnpj varchar(255), nome varchar(255), primary key (id))
-2023-09-27T09:52:32.849-03:00 DEBUG 2256 --- [           main] org.hibernate.SQL                        : create table evento (aplicativo_id bigint, data_abertura timestamp(6), data_fechamento timestamp(6), id bigserial not null, tipo_evento_id bigint, mensagem varchar(255), titulo varchar(255), stack_trace oid, primary key (id))
-2023-09-27T09:52:32.856-03:00 DEBUG 2256 --- [           main] org.hibernate.SQL                        : create table evento_plataforma (enviado boolean not null, evento_id bigint, id bigserial not null, mensagem_id_externo varchar(255), plataforma varchar(255), primary key (id))
-2023-09-27T09:52:32.863-03:00 DEBUG 2256 --- [           main] org.hibernate.SQL                        : create table grupo_interesse (aplicativo_id bigint, empresa_id bigint, id bigserial not null, nome varchar(255), primary key (id))
-2023-09-27T09:52:32.868-03:00 DEBUG 2256 --- [           main] org.hibernate.SQL                        : create table grupo_interesse_tipo_evento (grupo_interesse_id bigint, id bigserial not null, tipo_evento_id bigint, primary key (id))
-2023-09-27T09:52:32.873-03:00 DEBUG 2256 --- [           main] org.hibernate.SQL                        : create table tipo_evento (ativo boolean not null, empresa_id bigint, id bigserial not null, nome varchar(255), primary key (id))
-2023-09-27T09:52:32.879-03:00 DEBUG 2256 --- [           main] org.hibernate.SQL                        : alter table if exists aplicativo add constraint FKflvt4ast2lfmiaykroqx6j616 foreign key (empresa_id) references empresa
-2023-09-27T09:52:32.885-03:00 DEBUG 2256 --- [           main] org.hibernate.SQL                        : alter table if exists bot_grupo_interesse add constraint FK514hb06wmjwqudxi43gi347mb foreign key (bot_plataforma_id) references bot_plataforma
-2023-09-27T09:52:32.889-03:00 DEBUG 2256 --- [           main] org.hibernate.SQL                        : alter table if exists bot_grupo_interesse add constraint FKmvaeyx7edeed999h8i4bxcvsx foreign key (grupo_interesse_id) references grupo_interesse
-2023-09-27T09:52:32.892-03:00 DEBUG 2256 --- [           main] org.hibernate.SQL                        : alter table if exists evento add constraint FK2y4vndfjbvg6wjdawj7pxkfcy foreign key (aplicativo_id) references aplicativo
-2023-09-27T09:52:32.895-03:00 DEBUG 2256 --- [           main] org.hibernate.SQL                        : alter table if exists evento add constraint FK6w38aahpdken3763tw3m3sbou foreign key (tipo_evento_id) references tipo_evento
-2023-09-27T09:52:32.899-03:00 DEBUG 2256 --- [           main] org.hibernate.SQL                        : alter table if exists evento_plataforma add constraint FKirhaten1m28yx6qqf3wa9ds21 foreign key (evento_id) references evento
-2023-09-27T09:52:32.901-03:00 DEBUG 2256 --- [           main] org.hibernate.SQL                        : alter table if exists grupo_interesse add constraint FK7xag46sqtssddo1uevtsjepvr foreign key (aplicativo_id) references aplicativo
-2023-09-27T09:52:32.904-03:00 DEBUG 2256 --- [           main] org.hibernate.SQL                        : alter table if exists grupo_interesse add constraint FKlqqv0px8qhslonwvxlysnregn foreign key (empresa_id) references empresa
-2023-09-27T09:52:32.907-03:00 DEBUG 2256 --- [           main] org.hibernate.SQL                        : alter table if exists grupo_interesse_tipo_evento add constraint FKip9ukk6k5h2qtc5nd6woidhhu foreign key (grupo_interesse_id) references grupo_interesse
-2023-09-27T09:52:32.910-03:00 DEBUG 2256 --- [           main] org.hibernate.SQL                        : alter table if exists grupo_interesse_tipo_evento add constraint FKdbqvc20vk7ijqsi6257owwjuf foreign key (tipo_evento_id) references tipo_evento
-2023-09-27T09:52:32.913-03:00 DEBUG 2256 --- [           main] org.hibernate.SQL                        : alter table if exists tipo_evento add constraint FKdo10xf28wsj21ops2h7kbw8x3 foreign key (empresa_id) references empresa
+INSERT INTO aplicativo
+VALUES (0, 1, '12345678910', 'guzinhoapp2');
