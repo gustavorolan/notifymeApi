@@ -17,3 +17,6 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+
+  session:
+    store-type: jdbc

@@ -8,13 +8,14 @@ import com.notfyme.api.mapper.toEntity
 import com.notfyme.api.mapper.toResponse
 import com.notfyme.api.repository.AplicativoRepository
 import com.notfyme.api.repository.EmpresaRepository
+import com.notfyme.api.security.EmpresaAutenticadaService
 import com.notfyme.api.service.AplicativoService
 import org.springframework.data.domain.Sort
 import org.springframework.stereotype.Service
 
 @Service
 class AplicativoServiceImpl(
-    private val empresaRepository: EmpresaRepository,
+    private val empresaAutenticadaService: EmpresaAutenticadaService,
     private val aplicativoRepository: AplicativoRepository
 ) : AplicativoService {
 
@@ -28,26 +29,26 @@ class AplicativoServiceImpl(
     }
 
     override fun adicionar(aplicativoRequest: AplicativoRequest): Long {
-        val empresaEntity = empresaRepository.findById(aplicativoRequest.empresaId).orElseThrow { EmpresaNaoEncontradaException() }
+        val empresaEntity = empresaAutenticadaService.empresaEntity
 
         val aplicativoEntity = aplicativoRequest.toEntity(empresaEntity)
 
         return aplicativoRepository.save(aplicativoEntity).id!!
     }
 
-    override fun remover(aplicativoId: Long, empresaId: Long) {
-        val aplicativoEntity = aplicativoRepository.findByIdAndEmpresaEntityId(aplicativoId, empresaId)
+    override fun remover(aplicativoId: Long) {
+        val aplicativoEntity = aplicativoRepository.findByIdAndEmpresaEntityId(aplicativoId, empresaAutenticadaService.getId())
             .orElseThrow { EmpresaNaoEncontradaException() }
 
         aplicativoRepository.delete(aplicativoEntity)
     }
 
-    override fun obter(aplicativoId: Long, empresaId: Long) =
-        aplicativoRepository.findByIdAndEmpresaEntityId(aplicativoId, empresaId)
+    override fun obter(aplicativoId: Long) =
+        aplicativoRepository.findByIdAndEmpresaEntityId(aplicativoId, empresaAutenticadaService.getId())
             .orElseThrow { EmpresaOuAplicativoNaoEncontradoException() }
             .toResponse()
 
-    override fun obterPage(empresaId: Long, pageRequest: PageRequest) =
-        aplicativoRepository.findByEmpresaEntityId(empresaId, pageRequest.obter())
+    override fun obterPage(pageRequest: PageRequest) =
+        aplicativoRepository.findByEmpresaEntityId(empresaAutenticadaService.getId(), pageRequest.obter())
             .map { it.toResponse() }
 }

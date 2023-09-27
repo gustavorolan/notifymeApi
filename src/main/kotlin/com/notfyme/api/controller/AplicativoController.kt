@@ -21,22 +21,22 @@ class AplicativoController(
         return ResponseEntity.created(URI.create("/aplicativo/${id}")).build()
     }
 
-    @DeleteMapping("/{aplicativoId}/empresa/{empresaId}")
+    @DeleteMapping("/{aplicativoId}")
     fun remover(@PathVariable aplicativoId: Long, @PathVariable empresaId: Long): ResponseEntity<String> {
-        aplicativoService.remover(aplicativoId, empresaId)
+        aplicativoService.remover(aplicativoId)
         return ResponseEntity.noContent().build()
     }
 
-    @GetMapping("/{aplicativoId}/empresa/{empresaId}")
-    fun obter(@PathVariable aplicativoId: Long, @PathVariable empresaId: Long): ResponseEntity<AplicativoResponse> {
-        val aplicativoResponse = aplicativoService.obter(aplicativoId, empresaId)
+    @GetMapping("/{aplicativoId}")
+    fun obter(@PathVariable aplicativoId: Long): ResponseEntity<AplicativoResponse> {
+        val aplicativoResponse = aplicativoService.obter(aplicativoId)
         return ResponseEntity.ok(aplicativoResponse)
     }
 
 
-    @GetMapping("/empresa/{empresaId}")
-    fun obterPage(@PathVariable empresaId: Long, @RequestBody pageRequest: PageRequest): ResponseEntity<Page<AplicativoResponse>> {
-        val pageResponse = aplicativoService.obterPage(empresaId, pageRequest)
+    @GetMapping
+    fun obterPage(@RequestBody pageRequest: PageRequest): ResponseEntity<Page<AplicativoResponse>> {
+        val pageResponse = aplicativoService.obterPage(pageRequest)
         return ResponseEntity.ok(pageResponse)
     }
 }

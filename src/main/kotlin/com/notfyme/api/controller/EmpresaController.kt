@@ -1,0 +1,22 @@
+package com.notfyme.api.controller
+
+import com.notfyme.api.controller.dto.EmpresaRequest
+import com.notfyme.api.service.EmpresaService
+import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RestController
+import java.net.URI
+
+@RequestMapping("/empresa")
+@RestController
+class EmpresaController (
+    private val empresaService: EmpresaService
+) {
+    @PostMapping("/adicionar")
+    fun adicionar(@RequestBody empresaRequest: EmpresaRequest): ResponseEntity<String> {
+        val empresaId = empresaService.adicionar(empresaRequest)
+        return ResponseEntity.created(URI.create("$empresaId")).build()
+    }
+}
