@@ -14,6 +14,6 @@ data class GrupoInteresseTipoEventoEntity(
     val grupoInteresseEntity: GrupoInteresseEntity,
 
     @ManyToOne
-    @JoinColumn(name = "grupoInteresseId")
+    @JoinColumn(name = "tipoEventoId")
     val tipoEventoEntity: TipoEventoEntity,
 )

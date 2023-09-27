@@ -1,3 +1,3 @@
 package com.notfyme.api.exception
 
-class NotFoundedRuntimeException(message: String) : RuntimeException(message)
+open class NotFoundedRuntimeException(message: String) : RuntimeException(message)
