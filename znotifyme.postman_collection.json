@@ -1,0 +1,139 @@
+{
+	"info": {
+		"_postman_id": "91183ec8-ca6b-4894-92ce-6dd05ab1a350",
+		"name": "znotifyme",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28315247"
+	},
+	"item": [
+		{
+			"name": "aplicativo",
+			"item": [
+				{
+					"name": "obterPage",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\" : \"app2\",\n    \"empresaId\" : 0,\n    \"apiKey\":\"asopdapsodkas\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:10008/aplicativo/empresa/0/page/0",
+							"host": [
+								"localhost"
+							],
+							"port": "10008",
+							"path": [
+								"aplicativo",
+								"empresa",
+								"0",
+								"page",
+								"0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "adicionar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\" : \"app3\",\n    \"empresaId\" : 0,\n    \"apiKey\":\"asopdapsodkas\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:10008/aplicativo",
+							"host": [
+								"localhost"
+							],
+							"port": "10008",
+							"path": [
+								"aplicativo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleta",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\" : \"app2\",\n    \"empresaId\" : 0,\n    \"apiKey\":\"asopdapsodkas\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:10008/aplicativo/1/empresa/0",
+							"host": [
+								"localhost"
+							],
+							"port": "10008",
+							"path": [
+								"aplicativo",
+								"1",
+								"empresa",
+								"0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obter",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\" : \"app2\",\n    \"empresaId\" : 0,\n    \"apiKey\":\"asopdapsodkas\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:10008/aplicativo/3/empresa/0",
+							"host": [
+								"localhost"
+							],
+							"port": "10008",
+							"path": [
+								"aplicativo",
+								"3",
+								"empresa",
+								"0"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
