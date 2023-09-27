@@ -27,12 +27,12 @@ class AplicativoServiceImpl(
         private val SORT = Sort.by(Sort.Direction.ASC, COLUNA_SORT)
     }
 
-    override fun adicionar(aplicativoRequest: AplicativoRequest) {
+    override fun adicionar(aplicativoRequest: AplicativoRequest): Long {
         val empresaEntity = empresaRepository.findById(aplicativoRequest.empresaId).orElseThrow { EmpresaNaoEncontradaException() }
 
         val aplicativoEntity = aplicativoRequest.toEntity(empresaEntity)
 
-        aplicativoRepository.save(aplicativoEntity)
+        return aplicativoRepository.save(aplicativoEntity).id!!
     }
 
     override fun remover(aplicativoId: Long, empresaId: Long) {

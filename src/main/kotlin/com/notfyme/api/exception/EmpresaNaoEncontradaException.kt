@@ -1,3 +1,3 @@
 package com.notfyme.api.exception
 
-class EmpresaNaoEncontradaException : NotFoundedRuntimeException("Empresa não foi encontrada.")
+class EmpresaNaoEncontradaException : NotFoundRuntimeException("Empresa não foi encontrada.")

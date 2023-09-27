@@ -1,3 +1,3 @@
 package com.notfyme.api.exception
 
-class AplicativoNaoEncontradaException : NotFoundedRuntimeException("Aplicativo não foi encontrada.")
+class AplicativoNaoEncontradaException : NotFoundRuntimeException("Aplicativo não foi encontrada.")

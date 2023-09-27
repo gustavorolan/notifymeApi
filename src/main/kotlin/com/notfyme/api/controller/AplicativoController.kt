@@ -6,6 +6,7 @@ import com.notfyme.api.service.AplicativoService
 import org.springframework.data.domain.Page
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import java.net.URI
 
 @RestController
 @RequestMapping("/aplicativo")
@@ -15,8 +16,8 @@ class AplicativoController(
 
     @PostMapping
     fun adicionar(@RequestBody aplicativoRequest: AplicativoRequest): ResponseEntity<String> {
-        aplicativoService.adicionar(aplicativoRequest)
-        return ResponseEntity.noContent().build()
+        val id = aplicativoService.adicionar(aplicativoRequest)
+        return ResponseEntity.created(URI.create("/aplicativo/${id}")).build()
     }
 
     @DeleteMapping("/{aplicativoId}/empresa/{empresaId}")

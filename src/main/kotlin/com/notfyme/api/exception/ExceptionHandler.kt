@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice
 @RestControllerAdvice
 class ExceptionHandler {
 
-    @ExceptionHandler(NotFoundedRuntimeException::class)
+    @ExceptionHandler(NotFoundRuntimeException::class)
     fun notFoundedHandler(exception: RuntimeException): ResponseEntity<String> {
         return ResponseEntity<String>(exception.message, HttpStatus.NOT_FOUND)
     }
