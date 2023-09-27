@@ -14,7 +14,7 @@ class AplicativoController(
 ) {
 
     @PostMapping
-    fun adicionar(aplicativoRequest: AplicativoRequest): ResponseEntity<String> {
+    fun adicionar(@RequestBody aplicativoRequest: AplicativoRequest): ResponseEntity<String> {
         aplicativoService.adicionar(aplicativoRequest)
         return ResponseEntity.noContent().build()
     }
