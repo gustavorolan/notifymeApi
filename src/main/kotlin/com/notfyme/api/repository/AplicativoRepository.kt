@@ -10,7 +10,7 @@ import java.util.Optional
 @Repository
 interface AplicativoRepository : CustomRepository<AplicativoEntity, Long> {
 
-    fun findByIdAndEmpresaEntity(id:Long, empresaId:Long):Optional<AplicativoEntity>
+    fun findByIdAndEmpresaEntityId(id:Long, empresaId:Long):Optional<AplicativoEntity>
 
-    fun findByEmpresaEntity(empresaId:Long, pageable: Pageable): Page<AplicativoEntity>
+    fun findByEmpresaEntityId(empresaId:Long, pageable: Pageable): Page<AplicativoEntity>
 }

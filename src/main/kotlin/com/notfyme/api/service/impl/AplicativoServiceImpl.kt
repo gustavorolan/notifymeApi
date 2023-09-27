@@ -17,7 +17,7 @@ class AplicativoServiceImpl(
 ) : AplicativoService {
 
     companion object{
-        private const val NUMERO_ELEMENTOS_POR_PAGINA = 10
+        private const val NUMERO_DE_ELEMENTOS_POR_PAGINA = 10
     }
 
     override fun adicionar(aplicativoRequest: AplicativoRequest) {
@@ -29,18 +29,18 @@ class AplicativoServiceImpl(
     }
 
     override fun remover(aplicativoId: Long, empresaId: Long) {
-        val aplicativoEntity = aplicativoRepository.findByIdAndEmpresaEntity(aplicativoId, empresaId)
+        val aplicativoEntity = aplicativoRepository.findByIdAndEmpresaEntityId(aplicativoId, empresaId)
             .orElseThrow { EmpresaNaoEncontradaException() }
 
         aplicativoRepository.delete(aplicativoEntity)
     }
 
     override fun obter(aplicativoId: Long, empresaId: Long) =
-        aplicativoRepository.findByIdAndEmpresaEntity(aplicativoId, empresaId)
+        aplicativoRepository.findByIdAndEmpresaEntityId(aplicativoId, empresaId)
             .orElseThrow { EmpresaNaoEncontradaException() }
             .toResponse()
 
     override fun obterPage(empresaId: Long, page:Int) =
-        aplicativoRepository.findByEmpresaEntity(empresaId, PageRequest.of(page, NUMERO_ELEMENTOS_POR_PAGINA))
+        aplicativoRepository.findByEmpresaEntityId(empresaId, PageRequest.of(page, NUMERO_DE_ELEMENTOS_POR_PAGINA))
             .map { it.toResponse() }
 }
