@@ -10,5 +10,5 @@ data class PageRequest(
     val direction: Sort.Direction? = Sort.Direction.ASC
 ) {
     fun obter() = PageRequest.of(page!!, linesPerPage!!, sort())
-    fun sort() = Sort.by(direction!!, orderBy)
+    private fun sort() = Sort.by(direction!!, orderBy)
 }

@@ -97,7 +97,50 @@
 					"response": []
 				},
 				{
-					"name": "deleta",
+					"name": "alterar",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "0",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\" : \"app5\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:10008/aplicativo/1",
+							"host": [
+								"localhost"
+							],
+							"port": "10008",
+							"path": [
+								"aplicativo",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletar",
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -116,15 +159,6 @@
 						},
 						"method": "DELETE",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"nome\" : \"app2\",\n    \"empresaId\" : 0,\n    \"apiKey\":\"asopdapsodkas\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "localhost:10008/aplicativo/1/empresa/0",
 							"host": [
@@ -169,6 +203,209 @@
 							"port": "10008",
 							"path": [
 								"aplicativo",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tipoEvento",
+			"item": [
+				{
+					"name": "obterPage",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "0",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"direction\":\"DESC\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:10008/tipoEvento",
+							"host": [
+								"localhost"
+							],
+							"port": "10008",
+							"path": [
+								"tipoEvento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "adicionar",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "0",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\" : \"tipoEvento4\",\n    \"ativo\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:10008/tipoEvento",
+							"host": [
+								"localhost"
+							],
+							"port": "10008",
+							"path": [
+								"tipoEvento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "alterar",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "0",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\" : \"tipoEvento100\",\n    \"ativo\" : true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:10008/tipoEvento/1",
+							"host": [
+								"localhost"
+							],
+							"port": "10008",
+							"path": [
+								"tipoEvento",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletar",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "0",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:10008/tipoEvento/2",
+							"host": [
+								"localhost"
+							],
+							"port": "10008",
+							"path": [
+								"tipoEvento",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obter",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "0",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:10008/tipoEvento/3",
+							"host": [
+								"localhost"
+							],
+							"port": "10008",
+							"path": [
+								"tipoEvento",
 								"3"
 							]
 						}
@@ -315,7 +552,7 @@
 					"response": []
 				},
 				{
-					"name": "deleta",
+					"name": "deletar",
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -334,15 +571,6 @@
 						},
 						"method": "DELETE",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"nome\" : \"app2\",\n    \"empresaId\" : 0,\n    \"apiKey\":\"asopdapsodkas\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "localhost:10008/grupoInteresse/1",
 							"host": [
@@ -377,6 +605,49 @@
 						},
 						"method": "GET",
 						"header": [],
+						"url": {
+							"raw": "localhost:10008/grupoInteresse/2",
+							"host": [
+								"localhost"
+							],
+							"port": "10008",
+							"path": [
+								"grupoInteresse",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "alterar",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "0",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\" : \"grupo13\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "localhost:10008/grupoInteresse/2",
 							"host": [
