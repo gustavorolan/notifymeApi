@@ -1,6 +1,6 @@
 package com.notfyme.api.mapper
 
-import com.notfyme.api.controller.dto.request.GrupoInteresseRequest
+import com.notfyme.api.controller.dto.request.post.GrupoInteresseRequest
 import com.notfyme.api.controller.dto.response.GrupoInteresseResponse
 import com.notfyme.api.domain.AplicativoEntity
 import com.notfyme.api.domain.EmpresaEntity

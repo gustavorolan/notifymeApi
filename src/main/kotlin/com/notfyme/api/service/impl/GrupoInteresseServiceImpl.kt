@@ -1,8 +1,10 @@
 package com.notfyme.api.service.impl
 
-import com.notfyme.api.controller.dto.request.GrupoInteresseRequest
-import com.notfyme.api.controller.dto.request.PageRequest
+import com.notfyme.api.controller.dto.request.put.GrupoInteresseAlterarRequest
+import com.notfyme.api.controller.dto.request.post.GrupoInteresseRequest
+import com.notfyme.api.controller.dto.request.post.PageRequest
 import com.notfyme.api.controller.dto.response.GrupoInteresseResponse
+import com.notfyme.api.domain.GrupoInteresseEntity
 import com.notfyme.api.exception.AplicativoNaoEncontradoException
 import com.notfyme.api.exception.EmpresaOuGrupoInteresseNaoEncontradoException
 import com.notfyme.api.mapper.toEntity
@@ -20,6 +22,14 @@ class GrupoInteresseServiceImpl(
     private val aplicativoRepository: AplicativoRepository,
     private val grupoInteresseRepository: GrupoInteresseRepository
 ) : GrupoInteresseService {
+    override fun alterar(idGrupoInteresse: Long, grupoInteresseRequest: GrupoInteresseAlterarRequest) {
+        val entity = obterEntity(idGrupoInteresse)
+        val novaEntity = entity.copy(
+            nome = grupoInteresseRequest.nome.ifEmpty { entity.nome }
+        )
+        grupoInteresseRepository.save(novaEntity)
+    }
+
     override fun adicionar(grupoInteresseRequest: GrupoInteresseRequest): Long {
         val empresaEntity = empresaAutenticadaService.empresaEntity
         val aplicativoEntity = aplicativoRepository.findById(grupoInteresseRequest.aplicativoId)
@@ -32,16 +42,12 @@ class GrupoInteresseServiceImpl(
     }
 
     override fun remover(grupoInteresseId: Long) {
-        val grupoInteresseEntity = grupoInteresseRepository.findByIdAndEmpresaEntityId(grupoInteresseId, empresaAutenticadaService.getId())
-            .orElseThrow { EmpresaOuGrupoInteresseNaoEncontradoException() }
+        val grupoInteresseEntity = obterEntity(grupoInteresseId)
 
         grupoInteresseRepository.delete(grupoInteresseEntity)
     }
 
-    override fun obter(grupoInteresseId: Long) = grupoInteresseRepository.findByIdAndEmpresaEntityId(grupoInteresseId, empresaAutenticadaService.getId())
-        .orElseThrow { EmpresaOuGrupoInteresseNaoEncontradoException() }
-        .toResponse()
-
+    override fun obter(grupoInteresseId: Long) = obterEntity(grupoInteresseId).toResponse()
 
     override fun obterPage(pageRequest: PageRequest): Page<GrupoInteresseResponse> =
         grupoInteresseRepository.findByEmpresaEntityId(empresaAutenticadaService.getId(), pageRequest.obter())
@@ -51,4 +57,8 @@ class GrupoInteresseServiceImpl(
         grupoInteresseRepository
             .findByEmpresaEntityIdAndAplicativoEntityId(empresaAutenticadaService.getId(), aplicativoId, pageRequest.obter())
             .map { it.toResponse() }
+
+    private fun obterEntity(grupoInteresseId: Long): GrupoInteresseEntity =
+        grupoInteresseRepository.findByIdAndEmpresaEntityId(grupoInteresseId, empresaAutenticadaService.getId())
+            .orElseThrow { EmpresaOuGrupoInteresseNaoEncontradoException() }
 }

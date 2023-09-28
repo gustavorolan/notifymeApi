@@ -1,4 +1,4 @@
-package com.notfyme.api.controller.dto.request
+package com.notfyme.api.controller.dto.request.post
 
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Sort

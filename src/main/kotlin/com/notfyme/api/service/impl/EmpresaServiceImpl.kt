@@ -1,7 +1,7 @@
 package com.notfyme.api.service.impl
 
 
-import com.notfyme.api.controller.dto.request.EmpresaRequest
+import com.notfyme.api.controller.dto.request.post.EmpresaRequest
 import com.notfyme.api.mapper.toEntity
 import com.notfyme.api.repository.EmpresaRepository
 import com.notfyme.api.service.EmpresaService

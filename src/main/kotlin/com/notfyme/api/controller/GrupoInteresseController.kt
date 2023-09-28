@@ -1,7 +1,8 @@
 package com.notfyme.api.controller
 
-import com.notfyme.api.controller.dto.request.GrupoInteresseRequest
-import com.notfyme.api.controller.dto.request.PageRequest
+import com.notfyme.api.controller.dto.request.put.GrupoInteresseAlterarRequest
+import com.notfyme.api.controller.dto.request.post.GrupoInteresseRequest
+import com.notfyme.api.controller.dto.request.post.PageRequest
 import com.notfyme.api.controller.dto.response.GrupoInteresseResponse
 import com.notfyme.api.service.GrupoInteresseService
 import org.springframework.data.domain.Page
@@ -14,6 +15,12 @@ import java.net.URI
 class GrupoInteresseController(
     private val grupoInteresseService: GrupoInteresseService
 ) {
+
+    @PutMapping("/{grupoInteresseId}")
+    fun adicionar(@PathVariable grupoInteresseId:Long, @RequestBody grupoInteresseAlterarRequest: GrupoInteresseAlterarRequest): ResponseEntity<String> {
+        grupoInteresseService.alterar(grupoInteresseId, grupoInteresseAlterarRequest)
+        return ResponseEntity.ok().build()
+    }
 
     @PostMapping
     fun adicionar(@RequestBody grupoInteresseRequest: GrupoInteresseRequest): ResponseEntity<String> {

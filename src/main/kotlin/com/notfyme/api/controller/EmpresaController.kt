@@ -1,6 +1,6 @@
 package com.notfyme.api.controller
 
-import com.notfyme.api.controller.dto.request.EmpresaRequest
+import com.notfyme.api.controller.dto.request.post.EmpresaRequest
 import com.notfyme.api.service.EmpresaService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping

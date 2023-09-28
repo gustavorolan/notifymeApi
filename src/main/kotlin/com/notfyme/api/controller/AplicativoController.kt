@@ -1,8 +1,9 @@
 package com.notfyme.api.controller
 
-import com.notfyme.api.controller.dto.request.AplicativoRequest
+import com.notfyme.api.controller.dto.request.put.AplicativoAlterarRequest
+import com.notfyme.api.controller.dto.request.post.AplicativoRequest
 import com.notfyme.api.controller.dto.response.AplicativoResponse
-import com.notfyme.api.controller.dto.request.PageRequest
+import com.notfyme.api.controller.dto.request.post.PageRequest
 import com.notfyme.api.service.AplicativoService
 import org.springframework.data.domain.Page
 import org.springframework.http.ResponseEntity
@@ -14,6 +15,12 @@ import java.net.URI
 class AplicativoController(
     private val aplicativoService: AplicativoService
 ) {
+
+    @PutMapping("/{aplicativoId}")
+    fun alterar(@PathVariable aplicativoId:Long, @RequestBody aplicativoAlterarRequest: AplicativoAlterarRequest): ResponseEntity<String> {
+        aplicativoService.alterar(aplicativoId, aplicativoAlterarRequest)
+        return ResponseEntity.ok().build()
+    }
 
     @PostMapping
     fun adicionar(@RequestBody aplicativoRequest: AplicativoRequest): ResponseEntity<String> {
