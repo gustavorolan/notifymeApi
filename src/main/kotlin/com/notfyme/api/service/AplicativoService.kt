@@ -1,8 +1,8 @@
 package com.notfyme.api.service
 
-import com.notfyme.api.controller.dto.AplicativoRequest
-import com.notfyme.api.controller.dto.AplicativoResponse
-import com.notfyme.api.controller.dto.PageRequest
+import com.notfyme.api.controller.dto.request.AplicativoRequest
+import com.notfyme.api.controller.dto.response.AplicativoResponse
+import com.notfyme.api.controller.dto.request.PageRequest
 import org.springframework.data.domain.Page
 
 interface AplicativoService {

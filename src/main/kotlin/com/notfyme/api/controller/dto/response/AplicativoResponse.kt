@@ -1,4 +1,4 @@
-package com.notfyme.api.controller.dto
+package com.notfyme.api.controller.dto.response
 
 data class AplicativoResponse(
     val id: Long,

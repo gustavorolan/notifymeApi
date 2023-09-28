@@ -1,7 +1,7 @@
 package com.notfyme.api.mapper
 
-import com.notfyme.api.controller.dto.AplicativoRequest
-import com.notfyme.api.controller.dto.AplicativoResponse
+import com.notfyme.api.controller.dto.request.AplicativoRequest
+import com.notfyme.api.controller.dto.response.AplicativoResponse
 import com.notfyme.api.domain.AplicativoEntity
 import com.notfyme.api.domain.EmpresaEntity
 

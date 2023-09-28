@@ -1,4 +1,4 @@
-package com.notfyme.api.controller.dto
+package com.notfyme.api.controller.dto.request
 
 data class EmpresaRequest(
 

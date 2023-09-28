@@ -1,8 +1,8 @@
 package com.notfyme.api.controller
 
-import com.notfyme.api.controller.dto.AplicativoRequest
-import com.notfyme.api.controller.dto.AplicativoResponse
-import com.notfyme.api.controller.dto.PageRequest
+import com.notfyme.api.controller.dto.request.AplicativoRequest
+import com.notfyme.api.controller.dto.response.AplicativoResponse
+import com.notfyme.api.controller.dto.request.PageRequest
 import com.notfyme.api.service.AplicativoService
 import org.springframework.data.domain.Page
 import org.springframework.http.ResponseEntity
@@ -22,7 +22,7 @@ class AplicativoController(
     }
 
     @DeleteMapping("/{aplicativoId}")
-    fun remover(@PathVariable aplicativoId: Long, @PathVariable empresaId: Long): ResponseEntity<String> {
+    fun remover(@PathVariable aplicativoId: Long): ResponseEntity<String> {
         aplicativoService.remover(aplicativoId)
         return ResponseEntity.noContent().build()
     }

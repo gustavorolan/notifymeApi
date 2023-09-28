@@ -1,13 +1,12 @@
 package com.notfyme.api.service.impl
 
-import com.notfyme.api.controller.dto.AplicativoRequest
-import com.notfyme.api.controller.dto.PageRequest
+import com.notfyme.api.controller.dto.request.AplicativoRequest
+import com.notfyme.api.controller.dto.request.PageRequest
 import com.notfyme.api.exception.EmpresaNaoEncontradaException
 import com.notfyme.api.exception.EmpresaOuAplicativoNaoEncontradoException
 import com.notfyme.api.mapper.toEntity
 import com.notfyme.api.mapper.toResponse
 import com.notfyme.api.repository.AplicativoRepository
-import com.notfyme.api.repository.EmpresaRepository
 import com.notfyme.api.security.EmpresaAutenticadaService
 import com.notfyme.api.service.AplicativoService
 import org.springframework.data.domain.Sort
@@ -19,15 +18,6 @@ class AplicativoServiceImpl(
     private val aplicativoRepository: AplicativoRepository
 ) : AplicativoService {
 
-    companion object {
-
-        private const val NUMERO_DE_ELEMENTOS_POR_PAGINA = 10
-
-        private const val COLUNA_SORT = "nome"
-
-        private val SORT = Sort.by(Sort.Direction.ASC, COLUNA_SORT)
-    }
-
     override fun adicionar(aplicativoRequest: AplicativoRequest): Long {
         val empresaEntity = empresaAutenticadaService.empresaEntity
 
@@ -38,7 +28,7 @@ class AplicativoServiceImpl(
 
     override fun remover(aplicativoId: Long) {
         val aplicativoEntity = aplicativoRepository.findByIdAndEmpresaEntityId(aplicativoId, empresaAutenticadaService.getId())
-            .orElseThrow { EmpresaNaoEncontradaException() }
+            .orElseThrow { EmpresaOuAplicativoNaoEncontradoException() }
 
         aplicativoRepository.delete(aplicativoEntity)
     }

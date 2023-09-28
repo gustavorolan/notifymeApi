@@ -15,11 +15,26 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "0",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nome\" : \"app2\",\n    \"empresaId\" : 0,\n    \"apiKey\":\"asopdapsodkas\"\n}",
+							"raw": "{\n    \"direction\":\"DESC\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -27,17 +42,13 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:10008/aplicativo/empresa/0/page/0",
+							"raw": "localhost:10008/aplicativo",
 							"host": [
 								"localhost"
 							],
 							"port": "10008",
 							"path": [
-								"aplicativo",
-								"empresa",
-								"0",
-								"page",
-								"0"
+								"aplicativo"
 							]
 						}
 					},
@@ -46,11 +57,26 @@
 				{
 					"name": "adicionar",
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "0",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nome\" : \"app3\",\n    \"empresaId\" : 0,\n    \"apiKey\":\"asopdapsodkas\"\n}",
+							"raw": "{\n    \"nome\" : \"app4\",\n    \"apiKey\":\"asopdapsodkas\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -73,6 +99,21 @@
 				{
 					"name": "deleta",
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "0",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"body": {
@@ -102,11 +143,196 @@
 				},
 				{
 					"name": "obter",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "0",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:10008/aplicativo/3",
+							"host": [
+								"localhost"
+							],
+							"port": "10008",
+							"path": [
+								"aplicativo",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "grupoInteresse",
+			"item": [
+				{
+					"name": "obterPage",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "0",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"direction\":\"DESC\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:10008/grupoInteresse",
+							"host": [
+								"localhost"
+							],
+							"port": "10008",
+							"path": [
+								"grupoInteresse"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obterPageAplicativo",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "0",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"direction\":\"DESC\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:10008/grupoInteresse/aplicativo/2",
+							"host": [
+								"localhost"
+							],
+							"port": "10008",
+							"path": [
+								"grupoInteresse",
+								"aplicativo",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "adicionar",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "0",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\" : \"grupo1\",\n    \"aplicativoId\":2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:10008/grupoInteresse",
+							"host": [
+								"localhost"
+							],
+							"port": "10008",
+							"path": [
+								"grupoInteresse"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleta",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "0",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -118,22 +344,147 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:10008/aplicativo/3/empresa/0",
+							"raw": "localhost:10008/grupoInteresse/1",
 							"host": [
 								"localhost"
 							],
 							"port": "10008",
 							"path": [
-								"aplicativo",
-								"3",
-								"empresa",
-								"0"
+								"grupoInteresse",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obter",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "0",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:10008/grupoInteresse/2",
+							"host": [
+								"localhost"
+							],
+							"port": "10008",
+							"path": [
+								"grupoInteresse",
+								"2"
 							]
 						}
 					},
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "empresa",
+			"item": [
+				{
+					"name": "adicionar",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "0",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\" : \"app3\",\n    \"cnpj\" : 0,\n    \"password\":\"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:10008/empresa/adicionar",
+							"host": [
+								"localhost"
+							],
+							"port": "10008",
+							"path": [
+								"empresa",
+								"adicionar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "login",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "0",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\" : \"app2\",\n    \"empresaId\" : 0,\n    \"apiKey\":\"asopdapsodkas\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:10008/login",
+					"host": [
+						"localhost"
+					],
+					"port": "10008",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

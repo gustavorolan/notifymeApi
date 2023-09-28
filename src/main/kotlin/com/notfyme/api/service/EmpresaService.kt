@@ -1,6 +1,6 @@
 package com.notfyme.api.service
 
-import com.notfyme.api.controller.dto.EmpresaRequest
+import com.notfyme.api.controller.dto.request.EmpresaRequest
 
 
 interface EmpresaService {
