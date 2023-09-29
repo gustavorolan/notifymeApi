@@ -25,7 +25,7 @@ class GrupoInteresseController(
     @PostMapping
     fun adicionar(@RequestBody grupoInteresseRequest: GrupoInteresseRequest): ResponseEntity<String> {
         val id = grupoInteresseService.adicionar(grupoInteresseRequest)
-        return ResponseEntity.created(URI.create("/aplicativo/${id}")).build()
+        return ResponseEntity.created(URI.create("/grupoInteresseId/${id}")).build()
     }
 
     @DeleteMapping("/{grupoInteresseId}")

@@ -4,6 +4,7 @@ import com.notfyme.api.controller.dto.request.put.GrupoInteresseAlterarRequest
 import com.notfyme.api.controller.dto.request.post.GrupoInteresseRequest
 import com.notfyme.api.controller.dto.request.post.PageRequest
 import com.notfyme.api.controller.dto.response.GrupoInteresseResponse
+import com.notfyme.api.domain.GrupoInteresseEntity
 import org.springframework.data.domain.Page
 
 interface GrupoInteresseService {
@@ -13,4 +14,5 @@ interface GrupoInteresseService {
     fun obter(grupoInteresseId: Long): GrupoInteresseResponse
     fun obterPage(pageRequest: PageRequest): Page<GrupoInteresseResponse>
     fun obterPage(aplicativoId: Long, pageRequest: PageRequest): Page<GrupoInteresseResponse>
+    fun obterEntity(grupoInteresseId: Long): GrupoInteresseEntity
 }

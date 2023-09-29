@@ -45,7 +45,7 @@ class TipoEventoServiceImpl(
         tipoEventoRepository.findByEmpresaEntityId(empresaAutenticadaService.getId(), pageRequest.obter())
             .map { it.toResponse() }
 
-    private fun obterEntity(id: Long) =
+    override fun obterEntity(id: Long) =
         tipoEventoRepository.findByIdAndEmpresaEntityId(id, empresaAutenticadaService.getId())
             .orElseThrow { EmpresaTipoEventoEncontradaException() }
 }

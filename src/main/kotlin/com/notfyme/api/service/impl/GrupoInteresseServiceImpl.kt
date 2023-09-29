@@ -58,7 +58,7 @@ class GrupoInteresseServiceImpl(
             .findByEmpresaEntityIdAndAplicativoEntityId(empresaAutenticadaService.getId(), aplicativoId, pageRequest.obter())
             .map { it.toResponse() }
 
-    private fun obterEntity(grupoInteresseId: Long): GrupoInteresseEntity =
+    override fun obterEntity(grupoInteresseId: Long): GrupoInteresseEntity =
         grupoInteresseRepository.findByIdAndEmpresaEntityId(grupoInteresseId, empresaAutenticadaService.getId())
             .orElseThrow { EmpresaOuGrupoInteresseNaoEncontradoException() }
 }

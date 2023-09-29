@@ -17,6 +17,6 @@ class EmpresaController (
     @PostMapping("/adicionar")
     fun adicionar(@RequestBody empresaRequest: EmpresaRequest): ResponseEntity<String> {
         val empresaId = empresaService.adicionar(empresaRequest)
-        return ResponseEntity.created(URI.create("$empresaId")).build()
+        return ResponseEntity.created(URI.create("empresa/$empresaId")).build()
     }
 }

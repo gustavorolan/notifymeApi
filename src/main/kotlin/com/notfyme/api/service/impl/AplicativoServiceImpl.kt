@@ -46,6 +46,6 @@ class AplicativoServiceImpl(
             .map { it.toResponse() }
 
 
-    private fun obterEntity(aplicativoId: Long) = aplicativoRepository.findByIdAndEmpresaEntityId(aplicativoId, empresaAutenticadaService.getId())
+    override fun obterEntity(aplicativoId: Long) = aplicativoRepository.findByIdAndEmpresaEntityId(aplicativoId, empresaAutenticadaService.getId())
         .orElseThrow { EmpresaOuAplicativoNaoEncontradoException() }
 }
