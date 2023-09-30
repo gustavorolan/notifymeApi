@@ -4,6 +4,7 @@ import com.notfyme.api.controller.dto.request.post.GrupoInteresseTipoEventoReque
 import com.notfyme.api.controller.dto.request.post.PageRequest
 import com.notfyme.api.controller.dto.response.GrupoInteresseTipoEventoResponse
 import com.notfyme.api.service.GrupoInteresseTipoEventoService
+import jakarta.validation.Valid
 import org.springframework.data.domain.Page
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -16,7 +17,7 @@ class GrupoInteresseTipoEventoTipoEventoController(
 ) {
 
     @PostMapping
-    fun adicionar(@RequestBody grupoInteresseTipoEventoRequest: GrupoInteresseTipoEventoRequest): ResponseEntity<String> {
+    fun adicionar(@Valid @RequestBody grupoInteresseTipoEventoRequest: GrupoInteresseTipoEventoRequest): ResponseEntity<String> {
         val id = grupoInteresseTipoEventoService.adicionar(grupoInteresseTipoEventoRequest)
         return ResponseEntity.created(URI.create("/grupoInteresseTipoEvento/${id}")).build()
     }

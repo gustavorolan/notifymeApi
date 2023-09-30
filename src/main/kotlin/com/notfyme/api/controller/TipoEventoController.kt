@@ -5,6 +5,7 @@ import com.notfyme.api.controller.dto.request.post.TipoEventoRequest
 import com.notfyme.api.controller.dto.request.put.TipoEventoAlterarRequest
 import com.notfyme.api.controller.dto.response.TipoEventoResponse
 import com.notfyme.api.service.TipoEventoService
+import jakarta.validation.Valid
 import org.springframework.data.domain.Page
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -17,13 +18,13 @@ class TipoEventoController(
 ) {
 
     @PutMapping("/{tipoEventoId}")
-    fun alterar(@PathVariable tipoEventoId: Long, @RequestBody tipoEventoAlterarRequest: TipoEventoAlterarRequest): ResponseEntity<String> {
+    fun alterar(@PathVariable tipoEventoId: Long,@Valid @RequestBody tipoEventoAlterarRequest: TipoEventoAlterarRequest): ResponseEntity<String> {
         tipoEventoService.alterar(tipoEventoId, tipoEventoAlterarRequest)
         return ResponseEntity.ok().build()
     }
 
     @PostMapping
-    fun adicionar(@RequestBody tipoEventoRequest: TipoEventoRequest): ResponseEntity<String> {
+    fun adicionar(@Valid @RequestBody tipoEventoRequest: TipoEventoRequest): ResponseEntity<String> {
         val id = tipoEventoService.adicionar(tipoEventoRequest)
         return ResponseEntity.created(URI.create("/tipoEvento/${id}")).build()
     }

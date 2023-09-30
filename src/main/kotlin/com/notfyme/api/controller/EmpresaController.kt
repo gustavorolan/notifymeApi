@@ -2,6 +2,7 @@ package com.notfyme.api.controller
 
 import com.notfyme.api.controller.dto.request.post.EmpresaRequest
 import com.notfyme.api.service.EmpresaService
+import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -15,7 +16,7 @@ class EmpresaController (
     private val empresaService: EmpresaService
 ) {
     @PostMapping("/adicionar")
-    fun adicionar(@RequestBody empresaRequest: EmpresaRequest): ResponseEntity<String> {
+    fun adicionar(@Valid @RequestBody empresaRequest: EmpresaRequest): ResponseEntity<String> {
         val empresaId = empresaService.adicionar(empresaRequest)
         return ResponseEntity.created(URI.create("empresa/$empresaId")).build()
     }

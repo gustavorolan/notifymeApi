@@ -1,6 +1,7 @@
 package com.notfyme.api.domain
 
 import jakarta.persistence.*
+import jakarta.validation.constraints.NotBlank
 import java.time.LocalDateTime
 
 @Entity(name = "evento")
@@ -13,11 +14,13 @@ data class EventoEntity(
 
     val dataFechamento: LocalDateTime? = null,
 
+    @field:NotBlank
     val titulo: String,
 
     @Lob
     val stackTrace: String,
 
+    @field:NotBlank
     val mensagem: String,
 
     @ManyToOne

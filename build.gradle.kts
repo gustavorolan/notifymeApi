@@ -27,6 +27,7 @@ dependencies {
 	implementation("org.springframework.session:spring-session-jdbc")
 	implementation("org.springframework.security:spring-security-core")
 	implementation("org.springframework.boot:spring-boot-starter-security")
+	implementation("org.springframework.boot:spring-boot-starter-validation")
 	runtimeOnly("org.postgresql:postgresql")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }

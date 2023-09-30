@@ -5,6 +5,7 @@ import com.notfyme.api.controller.dto.request.post.GrupoInteresseRequest
 import com.notfyme.api.controller.dto.request.post.PageRequest
 import com.notfyme.api.controller.dto.response.GrupoInteresseResponse
 import com.notfyme.api.service.GrupoInteresseService
+import jakarta.validation.Valid
 import org.springframework.data.domain.Page
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -17,13 +18,13 @@ class GrupoInteresseController(
 ) {
 
     @PutMapping("/{grupoInteresseId}")
-    fun adicionar(@PathVariable grupoInteresseId:Long, @RequestBody grupoInteresseAlterarRequest: GrupoInteresseAlterarRequest): ResponseEntity<String> {
+    fun adicionar(@PathVariable grupoInteresseId:Long,@Valid @RequestBody grupoInteresseAlterarRequest: GrupoInteresseAlterarRequest): ResponseEntity<String> {
         grupoInteresseService.alterar(grupoInteresseId, grupoInteresseAlterarRequest)
         return ResponseEntity.ok().build()
     }
 
     @PostMapping
-    fun adicionar(@RequestBody grupoInteresseRequest: GrupoInteresseRequest): ResponseEntity<String> {
+    fun adicionar(@Valid @RequestBody grupoInteresseRequest: GrupoInteresseRequest): ResponseEntity<String> {
         val id = grupoInteresseService.adicionar(grupoInteresseRequest)
         return ResponseEntity.created(URI.create("/grupoInteresseId/${id}")).build()
     }

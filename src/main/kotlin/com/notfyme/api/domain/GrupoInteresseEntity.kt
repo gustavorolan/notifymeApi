@@ -1,6 +1,7 @@
 package com.notfyme.api.domain
 
 import jakarta.persistence.*
+import jakarta.validation.constraints.NotBlank
 
 @Entity(name = "grupoInteresse")
 data class GrupoInteresseEntity(
@@ -8,6 +9,7 @@ data class GrupoInteresseEntity(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
 
+    @field:NotBlank
     val nome: String,
 
     @ManyToOne
