@@ -1,5 +1,6 @@
 package com.notfyme.api.service.impl
 
+import com.notfyme.api.security.ExternalIdGenerator
 import com.notfyme.api.controller.dto.request.post.PageRequest
 import com.notfyme.api.controller.dto.request.post.TipoEventoRequest
 import com.notfyme.api.controller.dto.request.put.TipoEventoAlterarRequest
@@ -15,21 +16,22 @@ import org.springframework.stereotype.Service
 
 @Service
 class TipoEventoServiceImpl(
-    private val empresaAutenticadaService: EmpresaAutenticadaService,
-    private val tipoEventoRepository: TipoEventoRepository
+        private val empresaAutenticadaService: EmpresaAutenticadaService,
+        private val tipoEventoRepository: TipoEventoRepository,
+        private val exeternalIdGenerator: ExternalIdGenerator,
 ) : TipoEventoService {
     override fun alterar(tipoEventoId: Long, tipoEventoRequest: TipoEventoAlterarRequest) {
         val entity = obterEntity(tipoEventoId)
         val novaEntity = entity.copy(
-            nome = tipoEventoRequest.nome.ifEmpty { entity.nome },
-            ativo = tipoEventoRequest.ativo
+                nome = tipoEventoRequest.nome.ifEmpty { entity.nome },
+                ativo = tipoEventoRequest.ativo
         )
         tipoEventoRepository.save(novaEntity)
     }
 
     override fun adicionar(tipoEventoRequest: TipoEventoRequest): Long {
         val empresaEntity = empresaAutenticadaService.empresaEntity
-        val tipoeEventoEntity = tipoEventoRequest.toEntity(empresaEntity)
+        val tipoeEventoEntity = tipoEventoRequest.toEntity(empresaEntity, exeternalIdGenerator.generate())
         return tipoEventoRepository.save(tipoeEventoEntity).id!!
     }
 
@@ -39,13 +41,13 @@ class TipoEventoServiceImpl(
     }
 
     override fun obter(tipoEventoId: Long): TipoEventoResponse = obterEntity(tipoEventoId)
-        .toResponse()
+            .toResponse()
 
     override fun obterPage(pageRequest: PageRequest): Page<TipoEventoResponse> =
-        tipoEventoRepository.findByEmpresaEntityId(empresaAutenticadaService.getId(), pageRequest.obter())
-            .map { it.toResponse() }
+            tipoEventoRepository.findByEmpresaEntityId(empresaAutenticadaService.getId(), pageRequest.obter())
+                    .map { it.toResponse() }
 
     override fun obterEntity(id: Long) =
-        tipoEventoRepository.findByIdAndEmpresaEntityId(id, empresaAutenticadaService.getId())
-            .orElseThrow { EmpresaTipoEventoEncontradaException() }
+            tipoEventoRepository.findByIdAndEmpresaEntityId(id, empresaAutenticadaService.getId())
+                    .orElseThrow { EmpresaTipoEventoEncontradaException() }
 }

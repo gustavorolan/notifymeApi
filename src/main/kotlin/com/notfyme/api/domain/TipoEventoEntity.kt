@@ -5,16 +5,17 @@ import jakarta.validation.constraints.NotBlank
 
 @Entity(name = "tipoEvento")
 data class TipoEventoEntity(
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null,
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        val id: Long? = null,
 
-    @field:NotBlank
-    val nome: String,
+        @field:NotBlank
+        val nome: String,
 
-    val ativo: Boolean,
+        val ativo: Boolean,
 
-    @ManyToOne
-    @JoinColumn(name = "empresaId")
-    val empresaEntity: EmpresaEntity,
+        @ManyToOne
+        @JoinColumn(name = "empresaId")
+        val empresaEntity: EmpresaEntity,
+        val externalId: String
 )

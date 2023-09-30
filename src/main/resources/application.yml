@@ -10,9 +10,9 @@ server:
     include-message: always
 spring:
   datasource:
-    url: ${SPRING_DATASOURCE_URL}
-    username: ${SPRING_DATASOURCE_USERNAME}
-    password: ${SPRING_DATASOURCE_PASSWORD}
+    url: jdbc:postgresql://localhost:5432/notifyme-db2
+    username: aplicacao
+    password: aplicacao01
 
   jpa:
     hibernate:

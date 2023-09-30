@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Min
 import jakarta.validation.constraints.NotBlank
 
 data class TipoEventoRequest(
-    @field:NotBlank val nome: String,
-    @field:Min(1) @field:Max(Long.MAX_VALUE) val ativo: Boolean
+        @field:NotBlank val nome: String,
+
+        val ativo: Boolean = true,
 )

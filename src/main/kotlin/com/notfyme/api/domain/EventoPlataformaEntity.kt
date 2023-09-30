@@ -17,8 +17,5 @@ data class EventoPlataformaEntity(
     val eventoEntity: EventoEntity,
 
     @field:NotBlank
-    val enviado: Boolean,
-
-    @field:NotBlank
     val mensagemIdExterno: String
 )
