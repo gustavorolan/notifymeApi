@@ -22,7 +22,7 @@ class AplicativoServiceImpl(
             nome = aplicativoRequest.nome.ifEmpty { aplicativoEntity.nome },
             apiKey = aplicativoRequest.apiKey.ifEmpty { aplicativoEntity.apiKey }
         )
-        aplicativoRepository.save(novoAplicativoEntity);
+        aplicativoRepository.save(novoAplicativoEntity)
     }
 
     override fun adicionar(aplicativoRequest: AplicativoRequest): Long {

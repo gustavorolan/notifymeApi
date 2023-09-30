@@ -3,7 +3,6 @@ package com.notfyme.api.security
 import com.notfyme.api.domain.EmpresaEntity
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
-import org.springframework.stereotype.Component
 
 class SecurityUser(empresa: EmpresaEntity) : UserDetails {
     val id: Long
